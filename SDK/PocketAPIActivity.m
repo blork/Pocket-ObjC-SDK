@@ -7,7 +7,7 @@
 //
 
 #import "PocketAPIActivity.h"
-
+#import "SVProgressHUD.h"
 #import "PocketAPI.h"
 
 
@@ -69,7 +69,10 @@
 		[[PocketAPI sharedAPI] saveURL:URL handler: ^(PocketAPI *API, NSURL *URL, NSError *error) {
 			if (error != nil) {
 				URLFailed = YES;
-			}
+                [SVProgressHUD showSuccessWithStatus:@"Unable to save to Pocket"];
+			} else {
+                [SVProgressHUD showSuccessWithStatus:@"Saved to Pocket"];
+            }
 			
 			URLsLeft--;
 			
